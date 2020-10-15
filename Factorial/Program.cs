@@ -1,12 +1,11 @@
-﻿using System;
+using System;
 using System.Threading;
-using System.Diagnostics;
 
 namespace Factorial
 {
     internal class Program
     {
-        static ulong DefineFact(ulong num)
+        static ulong DefineFact(ulong num)                                   //определение факториала
         {
             ulong fact = 1;
             for (var i = num; i > 0; i--)
@@ -16,7 +15,7 @@ namespace Factorial
 
             return fact;
         }
-        public static int ResLength(ulong res)
+        public static int ResLength(ulong res)                               //нахождение длины значения факториала
         {
             string ResLength = Convert.ToString(res);
             int length = ResLength.Length - 1;
@@ -34,7 +33,7 @@ namespace Factorial
             }
 
             Console.WriteLine(endCh);
-        }
+        } //вывод строки рамки без значения
         public static void PrintRamAndValue(char beginCh, char centerCh, char endCh, ulong res)
         {
             Console.Write(beginCh);
@@ -42,12 +41,10 @@ namespace Factorial
             Console.Write($"  {res}  ");
             
             Console.WriteLine(endCh);
-        }
+        } //вывод строки рамки со значением
 
-        public static void Output()
+        public static void Output(ulong res)                                                       //вывод рамки полностью
         {
-            ulong res = DefineFact(Convert.ToUInt64(Console.ReadLine()));
-            
             Console.SetCursorPosition(80, 4);
             PrintRam('╔', '═', '╗', res);
 
@@ -63,29 +60,38 @@ namespace Factorial
             Console.SetCursorPosition(80, 8);
             PrintRam('╚', '═', '╝', res);
         }
-        static bool Check(ulong number)
+        public static ulong Read()                                    //проверка ввода
         {
-            var strNumber = Convert.ToString(number);
-            bool check = ulong.TryParse(strNumber, out number);
-            
-            return check;
+            bool isSuccess;
+            ulong number;
+
+            do
+            {
+                isSuccess = ulong.TryParse(Console.ReadLine(), out number);
+                Console.WriteLine("Введите число!");
+            } while (!isSuccess);
+            return number;
         }
-        public static void Colors()
+        public static void Colors(ulong res)                                        //изменение цветов
         {
             while (true)
             {
-
                 Console.ForegroundColor = ConsoleColor.Black;
                 Console.BackgroundColor = ConsoleColor.White;
                 
-                Output();
-                Thread.Sleep(100);
+                Output(res);
+                
+                Thread.Sleep(400);
+                Console.Clear();
                 
                 Console.ForegroundColor = ConsoleColor.White;
                 Console.BackgroundColor = ConsoleColor.Black;
                 
-                Output();
-                Thread.Sleep(100);
+                Output(res);
+                
+                Thread.Sleep(400);
+                Console.Clear();
+                
                 Console.ResetColor();
             }
         }
@@ -93,17 +99,9 @@ namespace Factorial
     public static void Main(string[] args)
         {
             Console.WriteLine("Введите число, для нахождения его факториала");
-            ulong res = DefineFact(Convert.ToUInt64(Console.ReadLine()));
             
-            if (Check(res) == false)
-            {
-                Console.WriteLine("Введите число!");
-                res = DefineFact(Convert.ToUInt64(Console.ReadLine()));            
-            }
-            else 
-            //Output();
-            
-            Colors();
+            ulong res = Read();
+            Colors(DefineFact(res));
         }
     }
 }
