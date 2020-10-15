@@ -5,7 +5,7 @@ namespace Factorial
 {
     internal class Program
     {
-        static ulong DefineFact(ulong num)                                   //определение факториала
+        static ulong DefineFact(ulong num)                                                              //определение факториала
         {
             ulong fact = 1;
             for (var i = num; i > 0; i--)
@@ -15,14 +15,14 @@ namespace Factorial
 
             return fact;
         }
-        public static int ResLength(ulong res)                               //нахождение длины значения факториала
+    public static int ResLength(ulong res)                                                              //нахождение длины значения факториала
         {
             string ResLength = Convert.ToString(res);
             int length = ResLength.Length - 1;
             
             return length;
         }
-        public static void PrintRam(char beginCh, char centerCh, char endCh, ulong res)
+        public static void PrintRam(char beginCh, char centerCh, char endCh, ulong res)                 //вывод строки рамки без значения
         {
             
             Console.Write(beginCh);
@@ -33,17 +33,17 @@ namespace Factorial
             }
 
             Console.WriteLine(endCh);
-        } //вывод строки рамки без значения
-        public static void PrintRamAndValue(char beginCh, char centerCh, char endCh, ulong res)
+        } 
+        public static void PrintRamAndValue(char beginCh, char centerCh, char endCh, ulong res)         //вывод строки рамки со значением
         {
             Console.Write(beginCh);
             
             Console.Write($"  {res}  ");
             
             Console.WriteLine(endCh);
-        } //вывод строки рамки со значением
+        } 
 
-        public static void Output(ulong res)                                                       //вывод рамки полностью
+        public static void Output(ulong res)                                                            //вывод рамки полностью
         {
             Console.SetCursorPosition(80, 4);
             PrintRam('╔', '═', '╗', res);
@@ -60,7 +60,7 @@ namespace Factorial
             Console.SetCursorPosition(80, 8);
             PrintRam('╚', '═', '╝', res);
         }
-        public static ulong Read()                                    //проверка ввода
+    public static ulong Read()                                                                          //проверка ввода
         {
             bool isSuccess;
             ulong number;
@@ -72,7 +72,7 @@ namespace Factorial
             } while (!isSuccess);
             return number;
         }
-        public static void Colors(ulong res)                                        //изменение цветов
+        public static void Colors(ulong res)                                                            //изменение цветов
         {
             while (true)
             {
